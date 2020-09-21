@@ -329,6 +329,14 @@
       }
     }
 
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].onclick = function () {
+        dots[lastIndex].classList.remove('active');
+        move(i);
+        dots[lastIndex].classList.add('active');
+      }
+    }
+
     function move(i) {
       oUpNodes[lastIndex].style.width = "";
       oUpNodes[i].style.width = "100%";
@@ -394,7 +402,6 @@
       }
     }
   }
-
 </script>
 <script src="./script/index.js"></script>
 
