@@ -1,0 +1,47 @@
+.item:nth-of-type(1) .backFace {
+  background: url(../img/tata.png) no-repeat;
+}
+
+.item:nth-of-type(2) .backFace {
+  background: url(../img/binoli.png) no-repeat;
+}
+
+.item:nth-of-type(3) .backFace {
+  background: url(../img/bks.png) no-repeat;
+}
+
+.item:nth-of-type(4) .backFace {
+  background: url(../img/gu.png) no-repeat;
+}
+
+.item:nth-of-type(5) .backFace {
+  background: url(../img/hlx.png) no-repeat;
+}
+
+.item:nth-of-type(6) .backFace {
+  background: url(../img/apcoa.png) no-repeat;
+}
+
+.item:nth-of-type(7) .backFace {
+  background: url(../img/leonberg.png) no-repeat;
+}
+
+.item:nth-of-type(8) .backFace {
+  background: url(../img/pcwelt.png) no-repeat;
+}
+
+.item:nth-of-type(9) .backFace {
+  background: url(../img/tata.png) no-repeat;
+}
+
+.item:nth-of-type(10) .backFace {
+  background: url(../img/bks.png) no-repeat;
+}
+
+.item:nth-of-type(11) .backFace {
+  background: url(../img/hlx.png) no-repeat;
+}
+
+.item:nth-of-type(12) .backFace {
+  background: url(../img/binoli.png) no-repeat;
+}
