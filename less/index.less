@@ -9,6 +9,12 @@ html,body {
     width: 1100px;
     height: 80px;
     margin: 0 auto;
+    .music {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: url(../img/musicoff.gif);
+    }
       .logo {
         float: left;
         margin-top: 30px;
@@ -58,6 +64,7 @@ html,body {
     left: 0;
     width: 100%;
     transition: 1s top;
+    z-index: 999;
     li {
       position: relative;
       section {
@@ -78,6 +85,7 @@ html,body {
           height: 100%;
           perspective: 1000px;
           transform-style: preserve-3d;
+          transition: 2s transform,1s opacity;
           li {
             position: absolute;
             height: 520px !important;
@@ -130,6 +138,7 @@ html,body {
           right: 0;
           bottom: 0;
           text-align: center;
+          transition: 2s transform,1s opacity;
           li {
             display: inline-block;
             border-radius: 50%;
@@ -138,7 +147,7 @@ html,body {
             background: rgba(255,255,255,0.5);
             margin: 2px;
             box-shadow: 0 0 4px rgba(25,25,25,0.8);
-            c
+            cursor: pointer;
             &.active {
               background: rgba(255,255,255,0.9);
               cursor: default;
@@ -150,10 +159,16 @@ html,body {
         position: relative;
         background: url(../img/bg2.jpg) no-repeat;
         background-size: cover;
+        overflow: hidden;
         header {
           margin: 50px;
         }
+        .ct {
+          position: absolute;
+          z-index: 99;
+        }
         .picWall {
+          z-index: 99;
           position: absolute;
           right: 50px;
           top: 70px;
@@ -230,6 +245,34 @@ html,body {
             }
           }
         }
+        .plane1,
+        .plane2,
+        .plane3 {
+          z-index: 0;
+          position:absolute; 
+          transition:1s;
+        }
+        .plane1 {
+          width:359px; 
+          height:283px; 
+          background:url(../img/plane1.png) no-repeat; 
+          left:300px; 
+          top:-100px; 
+        }
+        .plane2 {
+          width:309px; 
+          height:249px; 
+          background:url(../img/plane2.png) no-repeat; 
+          left:-100px; 
+          top:200px;
+        }
+        .plane3 {
+          width:230px; 
+          height:182px; 
+          background:url(../img/plane3.png) no-repeat; 
+          left:300px; 
+          top:400px; 
+        }
       }
       &.works {
         background: url(../img/bg4.jpg) no-repeat;
@@ -290,6 +333,7 @@ html,body {
             }
             &:last-child {
               width: 332px;
+              z-index: 9;
             }
           }
         }
@@ -302,6 +346,35 @@ html,body {
           background: url(../img/robot.png) no-repeat;
           animation: robot_move 5s infinite linear ;
           animation-direction: reverse;
+          z-index: 9;
+        }
+        .pencil1,
+        .pencil2,
+        .pencil3 {
+          z-index: 0;
+          position:absolute; 
+          transition:1s;
+        }
+        .pencil1 {
+          width:180px; 
+          height:97px; 
+          background:url(../img/pencel1.png) no-repeat;
+          left:500px; 
+          top:0;
+        }
+        .pencil2 {
+          width:268px; 
+          height:38px; 
+          background:url(../img/pencel2.png) no-repeat;
+          left:300px; 
+          top:250px;
+        }
+        .pencil3 {
+          width:441px; 
+          height:231px; 
+          background:url(../img/pencel3.png) no-repeat;
+          left:650px; 
+          top:300px;
         }
       }
       &.about {
@@ -329,6 +402,7 @@ html,body {
             border: 5px solid rgba(255,255,255,0.5);
             z-index: 100;
             overflow: hidden;
+            transition: 1s transform;
             span {
               position: absolute;
             }
@@ -464,8 +538,6 @@ html,body {
                 transform: scale(1);
               }
             }
-            
-            
           }
         }
       }
@@ -481,6 +553,7 @@ html,body {
         header {
           margin: 50px;
           div {
+            transition: 2s transform;
             float: left;
             &:nth-child(2) {
               margin-left: 220px;
@@ -536,22 +609,21 @@ html,body {
     }
   }
   .dot {
+    z-index: 99999;
     position: fixed;
     right: 10px;
     top: 50%;
     li {
+      cursor: pointer;
       width: 12px;
       height: 12px;
       box-shadow: 0 0 4px rgba(255,255,255,0.8);
       border: 1px solid rgb(201, 201, 201);
       margin-top: 10px;
       border-radius:50%;
-      cursor: pointer;
-
       &.active {
         background: rgba(255,255,255,0.5);
         cursor: default;
-
       }
     }
   }
@@ -627,7 +699,6 @@ html,body {
   line-height: 0.8;
   font-weight: bold;
   letter-spacing: -5px;
-  
 }
 
 .commonText {
@@ -645,6 +716,7 @@ html,body {
   visibility: hidden; 
   height: 0;
   font-size:0;
+  z-index: 999;
 }
 
 .clearfix {

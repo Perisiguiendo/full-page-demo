@@ -12,6 +12,12 @@ body {
   height: 80px;
   margin: 0 auto;
 }
+#head .headMain .music {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: url(../img/musicoff.gif);
+}
 #head .headMain .logo {
   float: left;
   margin-top: 30px;
@@ -57,6 +63,7 @@ body {
   left: 0;
   width: 100%;
   transition: 1s top;
+  z-index: 999;
 }
 #content .page-list li {
   position: relative;
@@ -80,6 +87,7 @@ body {
   height: 100%;
   perspective: 1000px;
   transform-style: preserve-3d;
+  transition: 2s transform,1s opacity;
 }
 #content .page-list li.home .carousel li {
   position: absolute;
@@ -132,6 +140,7 @@ body {
   right: 0;
   bottom: 0;
   text-align: center;
+  transition: 2s transform,1s opacity;
 }
 #content .page-list li.home .btn-click li {
   display: inline-block;
@@ -151,11 +160,17 @@ body {
   position: relative;
   background: url(../img/bg2.jpg) no-repeat;
   background-size: cover;
+  overflow: hidden;
 }
 #content .page-list li.course header {
   margin: 50px;
 }
+#content .page-list li.course .ct {
+  position: absolute;
+  z-index: 99;
+}
 #content .page-list li.course .picWall {
+  z-index: 99;
   position: absolute;
   right: 50px;
   top: 70px;
@@ -230,6 +245,34 @@ body {
 #content .page-list li.course .picWall .line:nth-child(5) {
   left: 472px;
 }
+#content .page-list li.course .plane1,
+#content .page-list li.course .plane2,
+#content .page-list li.course .plane3 {
+  z-index: 0;
+  position: absolute;
+  transition: 1s;
+}
+#content .page-list li.course .plane1 {
+  width: 359px;
+  height: 283px;
+  background: url(../img/plane1.png) no-repeat;
+  left: 300px;
+  top: -100px;
+}
+#content .page-list li.course .plane2 {
+  width: 309px;
+  height: 249px;
+  background: url(../img/plane2.png) no-repeat;
+  left: -100px;
+  top: 200px;
+}
+#content .page-list li.course .plane3 {
+  width: 230px;
+  height: 182px;
+  background: url(../img/plane3.png) no-repeat;
+  left: 300px;
+  top: 400px;
+}
 #content .page-list li.works {
   background: url(../img/bg4.jpg) no-repeat;
   background-size: cover;
@@ -290,6 +333,7 @@ body {
 }
 #content .page-list li.works .list .item:last-child {
   width: 332px;
+  z-index: 9;
 }
 #content .page-list li.works .robot {
   position: absolute;
@@ -300,6 +344,35 @@ body {
   background: url(../img/robot.png) no-repeat;
   animation: robot_move 5s infinite linear ;
   animation-direction: reverse;
+  z-index: 9;
+}
+#content .page-list li.works .pencil1,
+#content .page-list li.works .pencil2,
+#content .page-list li.works .pencil3 {
+  z-index: 0;
+  position: absolute;
+  transition: 1s;
+}
+#content .page-list li.works .pencil1 {
+  width: 180px;
+  height: 97px;
+  background: url(../img/pencel1.png) no-repeat;
+  left: 500px;
+  top: 0;
+}
+#content .page-list li.works .pencil2 {
+  width: 268px;
+  height: 38px;
+  background: url(../img/pencel2.png) no-repeat;
+  left: 300px;
+  top: 250px;
+}
+#content .page-list li.works .pencil3 {
+  width: 441px;
+  height: 231px;
+  background: url(../img/pencel3.png) no-repeat;
+  left: 650px;
+  top: 300px;
 }
 #content .page-list li.about {
   position: relative;
@@ -328,6 +401,7 @@ body {
   border: 5px solid rgba(255, 255, 255, 0.5);
   z-index: 100;
   overflow: hidden;
+  transition: 1s transform;
 }
 #content .page-list li.about .pic-line .item span {
   position: absolute;
@@ -474,6 +548,7 @@ body {
   margin: 50px;
 }
 #content .page-list li.team header div {
+  transition: 2s transform;
   float: left;
 }
 #content .page-list li.team header div:nth-child(2) {
@@ -522,11 +597,13 @@ body {
   background-position: -826px 0px;
 }
 #content .dot {
+  z-index: 99999;
   position: fixed;
   right: 10px;
   top: 50%;
 }
 #content .dot li {
+  cursor: pointer;
   width: 12px;
   height: 12px;
   box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
@@ -536,6 +613,7 @@ body {
 }
 #content .dot li.active {
   background: rgba(255, 255, 255, 0.5);
+  cursor: default;
 }
 @keyframes robot_move {
   0% {
@@ -612,6 +690,7 @@ body {
   visibility: hidden;
   height: 0;
   font-size: 0;
+  z-index: 999;
 }
 .clearfix {
   *zoom: 1;

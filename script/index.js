@@ -1,6 +1,6 @@
-const btn_Click = document.getElementsByClassName('btn-click')[0].getElementsByTagName('li');
-const ul_carousel = document.getElementsByClassName('carousel')[0];
-const carousel = ul_carousel.getElementsByTagName('li');
+const btn_Click = document.getElementsByClassName('btn-click')[0].getElementsByTagName('li'); // 首页轮播图的按钮
+const ul_carousel = document.getElementsByClassName('carousel')[0]; // 轮播图ul
+const carousel = ul_carousel.getElementsByTagName('li'); // 轮播图的li
 let index = 0;
 let timer3D = 0;
 let autoIndex = 0;
@@ -95,9 +95,7 @@ function bubble() {
       }
       this.style.opacity = 1;
       addCanvas();
-      oc.style.left = (document.body.clientWidth - 948) / 2 + this.offsetLeft  + "px";
-      console.log( document.body.clientWidth );
-      console.log()
+      oc.style.left = (document.body.clientWidth - 948) / 2 + this.offsetLeft + "px";
     }
   }
 
@@ -120,19 +118,23 @@ function bubble() {
 
   function Bubble() {
     if (oc.getContext) {
-      let ctx = oc.getContext("2d");
-      let arr = [];
+      var ctx = oc.getContext("2d");
+      var arr = [];
+      //将数组中的圆绘制到画布上
       time1 = setInterval(function () {
         ctx.clearRect(0, 0, oc.width, oc.height);
-        for (let i = 0; i < arr.length; i++) {
-          arr[i].deg += 10;
+        //动画
+        for (var i = 0; i < arr.length; i++) {
+          arr[i].deg += 8;
           arr[i].x = arr[i].startX + Math.sin(arr[i].deg * Math.PI / 180) * arr[i].step * 2;
           arr[i].y = arr[i].startY - (arr[i].deg * Math.PI / 180) * arr[i].step;
+
           if (arr[i].y <= 50) {
             arr.splice(i, 1)
           }
         }
-        for (let i = 0; i < arr.length; i++) {
+        //绘制
+        for (var i = 0; i < arr.length; i++) {
           ctx.save();
           ctx.fillStyle = "rgba(" + arr[i].red + "," + arr[i].green + "," + arr[i].blue + "," + arr[i].alp + ")";
           ctx.beginPath();
@@ -142,19 +144,22 @@ function bubble() {
         }
       }, 1000 / 60)
 
+      //往arr中注入随机圆的信息
       time2 = setInterval(function () {
-        let r = Math.random() * 6 + 2;
-        let x = Math.random() * oc.width;
-        let y = oc.height - r;
-        let red = Math.round(Math.random() * 255);
-        let green = Math.round(Math.random() * 255);
-        let blue = Math.round(Math.random() * 255);
-        let alp = 1;
-        let deg = 0;
-        let startX = x;
-        let startY = y;
+        var r = Math.random() * 6 + 2;
+        var x = Math.random() * oc.width;
+        var y = oc.height - r;
+        var red = Math.round(Math.random() * 255);
+        var green = Math.round(Math.random() * 255);
+        var blue = Math.round(Math.random() * 255);
+        var alp = 1;
+
+
+        var deg = 0;
+        var startX = x;
+        var startY = y;
         //曲线的运动形式
-        let step = Math.random() * 20 + 10;
+        var step = Math.random() * 20 + 10;
         arr.push({
           x: x,
           y: y,

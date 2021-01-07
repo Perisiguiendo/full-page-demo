@@ -57,6 +57,10 @@
           </ul>
         </nav>
         <div class="arrow"></div>
+        <div>
+          <audio src="./img/audio.mp3" loop></audio>
+          <div class="music"></div>
+        </div>
       </div>
     </header>
     <main id="content">
@@ -92,7 +96,7 @@
               <span>URSERE</span><br />
               <span>KUNDEN</span><br />
             </header>
-            <div class="commonText">
+            <div class="ct commonText">
               <p>Das Kundenvertrauen in unsere Kompetenz ist die notwendige Basis einer erfolgreichen Zusammenarbeit,
                 gleichzeitig aber auch das größte Lob, das man uns entgegenbringen kann. </p>
               <p>Diese und viele weitere große und kleine Kunden vertrauen uns seit Jahren, was uns stolz macht, und
@@ -153,13 +157,15 @@
                 <div class="face">AIRBERLIN</div>
               </div>
             </div>
-
+            <div class="plane1"></div>
+            <div class="plane2"></div>
+            <div class="plane3"></div>
           </section>
         </li>
         <li class="works page">
           <section>
             <header class="commonTitle">
-              <span>EINIGE</span><br />
+              <span>EINBLICK</span><br />
               <span>ERKENNTNIS</span><br />
               <span>ERGEBNIS</span><br />
             </header>
@@ -198,6 +204,9 @@
 
             </ul>
             <div class="robot"></div>
+            <div class="pencil1"></div>
+            <div class="pencil2"></div>
+            <div class="pencil3"></div>
           </section>
         </li>
         <li class="about page">
@@ -212,7 +221,7 @@
               zu etwas Großartigem heranwachsen.
             </p>
             <div class="pic-line">
-              <div class="item">
+              <div class="item pic-line1">
                 <ul>
                   <li>
                     <div></div>
@@ -229,7 +238,7 @@
                 </ul>
                 <span></span>
               </div>
-              <div class="item">
+              <div class="item pic-line2">
                 <ul>
                   <li>
                     <div></div>
@@ -252,11 +261,11 @@
         <li class="team page">
           <section>
             <header class="clearfix">
-              <div class="commonTitle">
+              <div class="commonTitle team1">
                 <span>WIR SIND</span><br />
                 <span>VOXELAIR</span><br />
               </div>
-              <div class="commonText">
+              <div class="commonText team2">
                 <p>
                   Wir sind seit 2002 eine Full-Service-Werbeagentur mit Stammsitz in Heimsheim, zwischen Stuttgart und
                   Karlsruhe.
@@ -299,7 +308,7 @@
 <script>
   window.onload = function () {
     const oArrowEl = document.getElementsByClassName('arrow')[0];
-    const oliNodes = document.getElementById('list').getElementsByTagName('li');
+    const oliNodes = document.getElementById('list').getElementsByTagName('li'); // 导航栏的li
     const oUpNodes = document.getElementById('list').getElementsByClassName('up');
     const firstLiNode = oliNodes[0];
     const firstUpLiNode = firstLiNode.getElementsByClassName('up')[0];
@@ -311,52 +320,109 @@
     let timer = null;
     let dots = document.getElementsByClassName('dot')[0].getElementsByTagName('li');
 
-    window.onresize = function () {
-      contentBind();
-      ocListNode.style.top = -lastIndex * (document.documentElement.clientHeight - oHeadNode.offsetHeight) + "px";
-      oArrowEl.style.left = oliNodes[lastIndex].offsetLeft + oliNodes[lastIndex].offsetWidth / 2 - oArrowEl
-        .offsetWidth / 2 + "px";
-    }
+    let anArr = [{
+      // 首页轮播图第一张图的显示和隐藏
+      inAn: function () {
+        let btn_Clicks = document.getElementsByClassName('btn-click')[0];
+        let ul_carousel = document.getElementsByClassName('carousel')[0];
 
-    headBind();
-    contentBind();
+        ul_carousel.style.opacity = 1;
+        btn_Clicks.style.opacity = 1;
+        ul_carousel.style.transform = "translateY(0px)";
+        btn_Clicks.style.transform = "translateY(0px)";
 
-    for (let i = 0; i < oliNodes.length; i++) {
-      oliNodes[i].onclick = function () {
-        dots[lastIndex].classList.remove('active');
-        move(i);
-        dots[lastIndex].classList.add('active');
+      },
+      outAn: function () {
+        let btn_Clicks = document.getElementsByClassName('btn-click')[0];
+        let ul_carousel = document.getElementsByClassName('carousel')[0];
+
+        ul_carousel.style.opacity = 0;
+        btn_Clicks.style.opacity = 0;
+        ul_carousel.style.transform = "translateY(-480px)";
+        btn_Clicks.style.transform = "translateY(100px)";
       }
-    }
-
-    for (let i = 0; i < dots.length; i++) {
-      dots[i].onclick = function () {
-        dots[lastIndex].classList.remove('active');
-        move(i);
-        dots[lastIndex].classList.add('active');
+    }, {
+      // 第二屏飞机的移动
+      inAn: function () {
+        let plane1 = document.getElementsByClassName('plane1')[0];
+        let plane2 = document.getElementsByClassName('plane2')[0];
+        let plane3 = document.getElementsByClassName('plane3')[0];
+        plane1.style.transform = "translate(0px, 0px)";
+        plane2.style.transform = "translate(0px, 0px)";
+        plane3.style.transform = "translate(0px, 0px)";
+      },
+      outAn: function () {
+        let plane1 = document.getElementsByClassName('plane1')[0];
+        let plane2 = document.getElementsByClassName('plane2')[0];
+        let plane3 = document.getElementsByClassName('plane3')[0];
+        plane1.style.transform = "translate(-200px, -200px)";
+        plane2.style.transform = "translate(-200px, 200px)";
+        plane3.style.transform = "translate(200px, -200px)";
       }
-    }
+    }, {
+      // 第三屏铅笔的移动
+      inAn: function () {
+        let pencil1 = document.getElementsByClassName('pencil1')[0];
+        let pencil2 = document.getElementsByClassName('pencil2')[0];
+        let pencil3 = document.getElementsByClassName('pencil3')[0];
 
-    function move(i) {
-      oUpNodes[lastIndex].style.width = "";
-      oUpNodes[i].style.width = "100%";
-      lastIndex = i;
-      oArrowEl.style.left = oliNodes[i].offsetLeft + oliNodes[i].offsetWidth / 2 - oArrowEl.offsetWidth / 2 +
-        "px";
-      ocListNode.style.top = -i * (document.documentElement.clientHeight - oHeadNode.offsetHeight) + "px";
-    }
+        pencil1.style.transform = "translateY(0px)";
+        pencil2.style.transform = "translateY(0px)";
+        pencil3.style.transform = "translateY(0px)";
+      },
+      outAn: function () {
+        let pencil1 = document.getElementsByClassName('pencil1')[0];
+        let pencil2 = document.getElementsByClassName('pencil2')[0];
+        let pencil3 = document.getElementsByClassName('pencil3')[0];
 
-    function headBind() {
-      firstUpLiNode.style.width = "100%";
-      oArrowEl.style.left = firstLiNode.offsetLeft + firstLiNode.offsetWidth / 2 - oArrowEl.offsetWidth / 2 + "px";
-    }
-
-    function contentBind() {
-      oContentNode.style.height = document.documentElement.clientHeight - oHeadNode.offsetHeight + "px";
-      for (let i = 0; i < ocLiNodes.length; i++) {
-        ocLiNodes[i].style.height = document.documentElement.clientHeight - oHeadNode.offsetHeight + "px";
+        pencil1.style.transform = "translateY(-100px)";
+        pencil2.style.transform = "translateY(100px)";
+        pencil3.style.transform = "translateY(100px)";
       }
+    }, {
+      // 第四屏相框的移动
+      inAn: function () {
+        let pic_line1 = document.getElementsByClassName('pic-line1')[0];
+        let pic_line2 = document.getElementsByClassName('pic-line2')[0];
+
+        pic_line1.style.transform = "rotate(0deg)";
+        pic_line2.style.transform = "rotate(0deg)";
+      },
+      outAn: function () {
+        let pic_line1 = document.getElementsByClassName('pic-line1')[0];
+        let pic_line2 = document.getElementsByClassName('pic-line2')[0];
+
+        pic_line1.style.transform = "rotate(40deg)";
+        pic_line2.style.transform = "rotate(-40deg)";
+      }
+    }, {
+      // 第五屏文字的移动
+      inAn: function () {
+        let team1 = document.getElementsByClassName('team1')[0];
+        let team2 = document.getElementsByClassName('team2')[0];
+
+        team1.style.transform = "translateX(0px)";
+        team2.style.transform = "translateX(0px)";
+      },
+      outAn: function () {
+        let team1 = document.getElementsByClassName('team1')[0];
+        let team2 = document.getElementsByClassName('team2')[0];
+
+        team1.style.transform = "translateX(-130px)";
+        team2.style.transform = "translateX(130px)";
+      }
+    }]
+
+    // 所有屏的动画处于未开始状态
+    for (let i = 1; i < anArr.length; i++) {
+      anArr[i].outAn();
     }
+
+    setTimeout(function () {
+      anArr[0].inAn();
+    }, 1000);
+
+    // 鼠标滚轮事件
     if (oContentNode.addEventListener) {
       oContentNode.addEventListener("DOMMouseScroll", function (e) {
         e = e || event;
@@ -375,6 +441,7 @@
     }
 
     function fn(e) {
+      let now = 0; // 滚轮滚动事件中的索引
       e = e || event;
       let dir = "";
       if (e.wheelDelta) {
@@ -386,21 +453,87 @@
         case "up":
           if (lastIndex > 0) {
             dots[lastIndex].classList.remove('active');
-            lastIndex--;
-            move(lastIndex);
+            oUpNodes[lastIndex].style.width = "";
+            now = lastIndex;
+            now--;
+            move(now);
             dots[lastIndex].classList.add('active');
+            oUpNodes[lastIndex].style.width = "100%";
           }
           break;
         case "down":
           if (lastIndex < ocLiNodes.length - 1) {
             dots[lastIndex].classList.remove('active');
-            lastIndex++;
-            move(lastIndex);
+            oUpNodes[lastIndex].style.width = "";
+            now = lastIndex;
+            now++;
+            move(now);
             dots[lastIndex].classList.add('active');
+            oUpNodes[lastIndex].style.width = "100%";
           }
           break;
       }
     }
+
+    // 屏幕尺寸改变时箭头和当前屏的位置
+    window.onresize = function () {
+      contentBind();
+      ocListNode.style.top = -lastIndex * (document.documentElement.clientHeight - oHeadNode.offsetHeight) + "px";
+      oArrowEl.style.left = oliNodes[lastIndex].offsetLeft + oliNodes[lastIndex].offsetWidth / 2 - oArrowEl
+        .offsetWidth / 2 + "px";
+    }
+
+    headBind();
+    contentBind();
+
+    // 侧栏的按钮点击
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].onclick = function () {
+        dots[lastIndex].classList.remove('active');
+        oUpNodes[lastIndex].style.width = "";
+        move(i);
+        dots[lastIndex].classList.add('active');
+        oUpNodes[lastIndex].style.width = "100%";
+      }
+    }
+
+    // 导航栏的按钮点击
+    for (let i = 0; i < oliNodes.length; i++) {
+      oliNodes[i].onclick = function () {
+        dots[lastIndex].classList.remove('active');
+        oUpNodes[lastIndex].style.width = "";
+        move(i);
+        dots[lastIndex].classList.add('active');
+        oUpNodes[lastIndex].style.width = "100%";
+      }
+    }
+    // 移动函数 
+    function move(i) {
+      if (anArr[lastIndex] && typeof anArr[lastIndex]["inAn"] === "function") {
+        anArr[lastIndex]["outAn"]();
+      }
+      lastIndex = i;
+      oArrowEl.style.left = oliNodes[i].offsetLeft + oliNodes[i].offsetWidth / 2 - oArrowEl.offsetWidth / 2 +
+        "px";
+      ocListNode.style.top = -i * (document.documentElement.clientHeight - oHeadNode.offsetHeight) + "px";
+      if (anArr[i] && typeof anArr[i]["inAn"] === "function") {
+        anArr[i]["inAn"]();
+      }
+    }
+
+    function headBind() {
+      firstUpLiNode.style.width = "100%";
+      oArrowEl.style.left = firstLiNode.offsetLeft + firstLiNode.offsetWidth / 2 - oArrowEl.offsetWidth / 2 + "px";
+    }
+
+    function contentBind() {
+      oContentNode.style.height = document.documentElement.clientHeight - oHeadNode.offsetHeight + "px";
+      for (let i = 0; i < ocLiNodes.length; i++) {
+        ocLiNodes[i].style.height = document.documentElement.clientHeight - oHeadNode.offsetHeight + "px";
+      }
+    }
+
+
   }
 </script>
 <script src="./script/index.js"></script>
